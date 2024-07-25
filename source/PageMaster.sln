@@ -11,6 +11,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{CA
 		..\.gitignore = ..\.gitignore
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{B2DAE806-40DF-443A-B3E8-E6A61AE6D091}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\build-deploy.yml = ..\.github\workflows\build-deploy.yml
+		..\.github\workflows\pull-request.yml = ..\.github\workflows\pull-request.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,5 +31,8 @@ Global
 		{93E01D38-F7BC-411D-935E-542EFE8531D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93E01D38-F7BC-411D-935E-542EFE8531D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93E01D38-F7BC-411D-935E-542EFE8531D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B2DAE806-40DF-443A-B3E8-E6A61AE6D091} = {CA15D754-0B43-4605-BD13-61E1B60C6FA3}
 	EndGlobalSection
 EndGlobal

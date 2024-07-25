@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
 
-        <Title>lkcode.pagemaster</Title>
+        <Title>PageMaster</Title>
         <PackageOutputPath>./nupkg</PackageOutputPath>
         <Company>$(Authors)</Company>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
