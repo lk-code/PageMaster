@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageMaster", "PageMaster\PageMaster.csproj", "{C181F8CB-1B4E-4458-B98E-2DB4375EE421}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageMaster.Tests", "PageMaster.Tests\PageMaster.Tests.csproj", "{93E01D38-F7BC-411D-935E-542EFE8531D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{CA15D754-0B43-4605-BD13-61E1B60C6FA3}"
+	ProjectSection(SolutionItems) = preProject
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+		..\.gitignore = ..\.gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{B2DAE806-40DF-443A-B3E8-E6A61AE6D091}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\build-deploy.yml = ..\.github\workflows\build-deploy.yml
+		..\.github\workflows\pull-request.yml = ..\.github\workflows\pull-request.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C181F8CB-1B4E-4458-B98E-2DB4375EE421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C181F8CB-1B4E-4458-B98E-2DB4375EE421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C181F8CB-1B4E-4458-B98E-2DB4375EE421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C181F8CB-1B4E-4458-B98E-2DB4375EE421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93E01D38-F7BC-411D-935E-542EFE8531D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93E01D38-F7BC-411D-935E-542EFE8531D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93E01D38-F7BC-411D-935E-542EFE8531D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93E01D38-F7BC-411D-935E-542EFE8531D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B2DAE806-40DF-443A-B3E8-E6A61AE6D091} = {CA15D754-0B43-4605-BD13-61E1B60C6FA3}
+	EndGlobalSection
+EndGlobal
