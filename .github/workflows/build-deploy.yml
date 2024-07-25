@@ -62,7 +62,7 @@ jobs:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
      shell: pwsh
      run: |
-      .\.sonar\scanner\dotnet-sonarscanner begin /k:"lk-code_PageMaster" /o:"lk-code-github" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+      .\.sonar\scanner\dotnet-sonarscanner begin /k:"lk-code_PageMaster" /o:"lk-code-github" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" 
 
    - name: Build
      shell: pwsh
@@ -90,4 +90,4 @@ jobs:
 
    - name: Publish
      run: dotnet nuget push "**/*.${{ env.VERSION }}.nupkg" --no-symbols --skip-duplicate --api-key ${{ secrets.NUGET_API_KEY }} --source "nuget.org"
-        
+      
