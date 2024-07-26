@@ -6,11 +6,13 @@ namespace PageMaster.Tests;
 [TestClass]
 public class SortingExtensionsTests
 {
+    [DataRow("test:asc", new[] { "test"}, new[] { SortDirection.ASC })]
+    [DataRow("test:Desc", new[] { "test"}, new[] { SortDirection.DESC })]
     [DataRow("test-alpha:asc,name:asc", new[] { "test-alpha", "name" }, new[] { SortDirection.ASC, SortDirection.ASC })]
     [DataRow("manufacturer:desc, name:asc", new[] { "manufacturer", "name" }, new[] { SortDirection.DESC, SortDirection.ASC })]
     [DataRow(" with spaces :desc, name:asc", new[] { "with spaces", "name" }, new[] { SortDirection.DESC, SortDirection.ASC })]
     [TestMethod]
-    public void QueryParameter_WithValid_Throws(string orderBy, string[] expectedSortKeys, SortDirection[] expectedSortDirections)
+    public void QueryParameter_WithValid_Empty(string orderBy, string[] expectedSortKeys, SortDirection[] expectedSortDirections)
     {
         var sorting = orderBy.ToSorting()
             .ToList();
@@ -22,5 +24,16 @@ public class SortingExtensionsTests
             sorting[i].FieldName.Should().Be(expectedSortKeys[i]);
             sorting[i].Direction.Should().Be(expectedSortDirections[i]);
         }
+    }
+    
+    [TestMethod]
+    public void QueryParameter_WithEmpty_Returns()
+    {
+        var orderBy = "";
+        var sorting = orderBy.ToSorting()
+            .ToList();
+
+        sorting.Should().NotBeNull();
+        sorting.Should().BeEmpty();
     }
 }
