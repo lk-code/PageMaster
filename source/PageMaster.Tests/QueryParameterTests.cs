@@ -2,17 +2,18 @@
 using lkcode.pagemaster;
 using lkcode.pagemaster.Filter;
 
-namespace PageMaster.Tests.Pagination;
+namespace PageMaster.Tests;
 
 [TestClass]
 public class QueryParameterTests
 {
     [TestMethod]
-    public void QueryParameter_WithoutSorting_Throws()
+    public void QueryParameter_WithoutSorting_Returns()
     {
         Sorting sorting = null!;
-
-        Assert.ThrowsException<ArgumentNullException>(() => new QueryParameter(sorting));
+        var queryParameter = new QueryParameter(sorting);
+        
+        queryParameter.Sortings.Should().BeEmpty();
     }
 
     [TestMethod]
