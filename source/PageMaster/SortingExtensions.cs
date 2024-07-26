@@ -4,6 +4,11 @@ public static class SortingExtensions
 {
     public static IEnumerable<Sorting> ToSorting(this string orderBy)
     {
+        if (string.IsNullOrEmpty(orderBy.Trim()))
+        {
+            return new List<Sorting>();
+        }
+        
         string[] orderByValues = orderBy
             .Trim()
             .Split(",");
