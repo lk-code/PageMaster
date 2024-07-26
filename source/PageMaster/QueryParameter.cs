@@ -16,7 +16,20 @@ public class QueryParameter : List<IFilter>
     /// <summary>
     /// the configured sort.
     /// </summary>
-    public Sorting Sorting { get; set; }
+    public IEnumerable<Sorting> Sortings { get; set; }
+
+    /// <summary>
+    /// creates a new instance of <see cref="QueryParameter"/>.
+    /// </summary>
+    /// <param name="currentPage">the current page in the pagination.</param>
+    /// <param name="itemsPerPage">specifies how many entries should be specified per page.</param>
+    /// <param name="sortings">sortings config</param>
+    public QueryParameter(IEnumerable<Sorting> sortings, int currentPage = 1, int itemsPerPage = 10)
+    {
+        CurrentPage = currentPage;
+        ItemsPerPage = itemsPerPage;
+        Sortings = sortings ?? throw new ArgumentNullException(nameof(sortings));
+    }
 
     /// <summary>
     /// creates a new instance of <see cref="QueryParameter"/>.
@@ -25,10 +38,12 @@ public class QueryParameter : List<IFilter>
     /// <param name="itemsPerPage">specifies how many entries should be specified per page.</param>
     /// <param name="sorting">sorting config</param>
     public QueryParameter(Sorting sorting, int currentPage = 1, int itemsPerPage = 10)
+        : this(new List<Sorting>(), currentPage, itemsPerPage)
     {
-        CurrentPage = currentPage;
-        ItemsPerPage = itemsPerPage;
-        Sorting = sorting ?? throw new ArgumentNullException(nameof(sorting));
+        if (sorting is not null)
+        {
+            Sortings.Append(sorting);
+        }
     }
 
     /// <summary>
