@@ -8,11 +8,11 @@ public class QueryParameter : List<IFilter>
     /// <summary>
     /// the current page in the pagination.
     /// </summary>
-    public int CurrentPage { get; set; }
+    public ulong CurrentPage { get; set; }
     /// <summary>
     /// specifies how many entries should be specified per page.
     /// </summary>
-    public int ItemsPerPage { get; set; }
+    public ulong ItemsPerPage { get; set; }
     /// <summary>
     /// the configured sort.
     /// </summary>
@@ -24,7 +24,7 @@ public class QueryParameter : List<IFilter>
     /// <param name="currentPage">the current page in the pagination.</param>
     /// <param name="itemsPerPage">specifies how many entries should be specified per page.</param>
     /// <param name="sortings">sortings config</param>
-    public QueryParameter(IEnumerable<Sorting> sortings, int currentPage = 1, int itemsPerPage = 10)
+    public QueryParameter(IEnumerable<Sorting> sortings, ulong currentPage = 1, ulong itemsPerPage = 10)
     {
         CurrentPage = currentPage;
         ItemsPerPage = itemsPerPage;
@@ -37,7 +37,7 @@ public class QueryParameter : List<IFilter>
     /// <param name="currentPage">the current page in the pagination.</param>
     /// <param name="itemsPerPage">specifies how many entries should be specified per page.</param>
     /// <param name="sorting">sorting config</param>
-    public QueryParameter(Sorting sorting, int currentPage = 1, int itemsPerPage = 10)
+    public QueryParameter(Sorting sorting, ulong currentPage = 1, ulong itemsPerPage = 10)
         : this(new List<Sorting>(), currentPage, itemsPerPage)
     {
         if (sorting is not null)
