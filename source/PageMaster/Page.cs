@@ -8,4 +8,4 @@
 /// <param name="TotalItemsCount">number of all entries.</param>
 /// <param name="Items">the entries of the current page.</param>
 /// <typeparam name="T"></typeparam>
-public record Page<T>(int CurrentPage, int ItemsPerPage, int TotalItemsCount, IEnumerable<T> Items);
+public record Page<T>(ulong CurrentPage, ulong ItemsPerPage, ulong TotalItemsCount, IEnumerable<T> Items);
