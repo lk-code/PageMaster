@@ -5,7 +5,7 @@
 /// </summary>
 public class SearchValueFilter : IFilter<string>
 {
-    private string _key;
+    private string _key = string.Empty;
     /// <summary>
     ///
     /// </summary>
@@ -21,7 +21,7 @@ public class SearchValueFilter : IFilter<string>
         }
     }
 
-    private string _value;
+    private string _value = string.Empty;
     /// <summary>
     ///
     /// </summary>
@@ -54,9 +54,11 @@ public class SearchValueFilter : IFilter<string>
     }
 
     /// <summary>
-    ///
+    /// 
     /// </summary>
+    /// <param name="key"></param>
     /// <param name="value"></param>
+    /// <param name="compareOperator"></param>
     public SearchValueFilter(string key,
         string value,
         CompareOperator compareOperator)
