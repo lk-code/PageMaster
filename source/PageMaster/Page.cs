@@ -1,4 +1,6 @@
-﻿namespace lkcode.pagemaster;
+﻿using lkcode.pagemaster.Contracts;
+
+namespace lkcode.pagemaster;
 
 /// <summary>
 /// 
@@ -11,10 +13,20 @@
 /// <param name="TotalEntries">Total number of entries that exist for this query. Can be null if unknown.</param>
 /// <param name="Items">The items of this page.</param>
 /// <typeparam name="T"></typeparam>
-public record Page<T>(ulong? LastPage,
+public class Page<T>(
+    ulong? LastPage,
     ulong? NextPage,
     ulong CurrentPage,
     ulong PerPage,
     ulong? PreviousPage,
     ulong? TotalEntries,
-    IEnumerable<T> Items);
+    IEnumerable<T> Items) : IPage<T>
+{
+    public ulong CurrentPage { get; init; } = CurrentPage;
+    public ulong PerPage { get; init; } = PerPage;
+    public ulong? TotalEntries { get; init; } = TotalEntries;
+    public IEnumerable<T> Items { get; init; } = Items;
+    public ulong? LastPage { get; init; } = LastPage;
+    public ulong? NextPage { get; init; } = NextPage;
+    public ulong? PreviousPage { get; init; } = PreviousPage;
+}

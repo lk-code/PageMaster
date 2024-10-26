@@ -3,15 +3,14 @@ using lkcode.pagemaster;
 
 namespace PageMaster.Tests;
 
-[TestClass]
 public class SortingExtensionsTests
 {
-    [DataRow("test:asc", new[] { "test"}, new[] { SortDirection.ASC })]
-    [DataRow("test:Desc", new[] { "test"}, new[] { SortDirection.DESC })]
-    [DataRow("test-alpha:asc,name:asc", new[] { "test-alpha", "name" }, new[] { SortDirection.ASC, SortDirection.ASC })]
-    [DataRow("manufacturer:desc, name:asc", new[] { "manufacturer", "name" }, new[] { SortDirection.DESC, SortDirection.ASC })]
-    [DataRow(" with spaces :desc, name:asc", new[] { "with spaces", "name" }, new[] { SortDirection.DESC, SortDirection.ASC })]
-    [TestMethod]
+    [Test]
+    [TestCase("test:asc", new[] { "test"}, new[] { SortDirection.ASC })]
+    [TestCase("test:Desc", new[] { "test"}, new[] { SortDirection.DESC })]
+    [TestCase("test-alpha:asc,name:asc", new[] { "test-alpha", "name" }, new[] { SortDirection.ASC, SortDirection.ASC })]
+    [TestCase("manufacturer:desc, name:asc", new[] { "manufacturer", "name" }, new[] { SortDirection.DESC, SortDirection.ASC })]
+    [TestCase(" with spaces :desc, name:asc", new[] { "with spaces", "name" }, new[] { SortDirection.DESC, SortDirection.ASC })]
     public void QueryParameter_WithValid_Empty(string orderBy, string[] expectedSortKeys, SortDirection[] expectedSortDirections)
     {
         var sorting = orderBy.ToSorting()
@@ -26,7 +25,7 @@ public class SortingExtensionsTests
         }
     }
     
-    [TestMethod]
+    [Test]
     public void QueryParameter_WithEmpty_Returns()
     {
         var orderBy = "";

@@ -4,10 +4,9 @@ using lkcode.pagemaster.Filter;
 
 namespace PageMaster.Tests.Filter;
 
-[TestClass]
 public class SearchValueFilterTests
 {
-    [TestMethod]
+    [Test]
     public void ToString_WithTitle_DisplayTitle()
     {
         var filter = new SearchValueFilter("username", "specific-username", CompareOperator.EQUALS);
