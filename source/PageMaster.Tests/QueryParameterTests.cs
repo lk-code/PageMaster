@@ -4,10 +4,9 @@ using lkcode.pagemaster.Filter;
 
 namespace PageMaster.Tests;
 
-[TestClass]
 public class QueryParameterTests
 {
-    [TestMethod]
+    [Test]
     public void QueryParameter_WithoutSorting_Returns()
     {
         Sorting sorting = null!;
@@ -16,7 +15,7 @@ public class QueryParameterTests
         queryParameter.Sortings.Should().BeEmpty();
     }
 
-    [TestMethod]
+    [Test]
     public void RemoveFilter_WithDifferentFilter_RemoveOnlyRequestedFilter()
     {
         var sorting = new Sorting("test", SortDirection.ASC);
@@ -29,7 +28,7 @@ public class QueryParameterTests
         queryParameter.HasFilter<SearchValueFilter>().Should().BeFalse();
     }
 
-    [TestMethod]
+    [Test]
     public void AddFilter_DuplicatedFilter_OnlyLatestFilter()
     {
         var sorting = new Sorting("test", SortDirection.ASC);
