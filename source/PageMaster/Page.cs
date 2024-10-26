@@ -22,11 +22,18 @@ public class Page<T>(
     ulong? TotalEntries,
     IEnumerable<T> Items) : IPage<T>
 {
+    /// <inheritdoc />
     public ulong CurrentPage { get; init; } = CurrentPage;
+    /// <inheritdoc />
     public ulong PerPage { get; init; } = PerPage;
+    /// <inheritdoc />
     public ulong? TotalEntries { get; init; } = TotalEntries;
+    /// <inheritdoc />
     public IEnumerable<T> Items { get; init; } = Items;
+    /// <inheritdoc />
     public ulong? LastPage { get; init; } = LastPage;
+    /// <inheritdoc />
     public ulong? NextPage { get; init; } = NextPage;
+    /// <inheritdoc />
     public ulong? PreviousPage { get; init; } = PreviousPage;
 }

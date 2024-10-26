@@ -1,33 +1,29 @@
-﻿namespace lkcode.pagemaster;
+﻿using lkcode.pagemaster.Contracts;
+
+namespace lkcode.pagemaster;
 
 /// <summary>
 /// contains the query parameters with sorting and filtering.
 /// </summary>
-public class QueryParameter : List<IFilter>
+public class QueryParameter : List<IFilter>, IQueryParameter
 {
-    /// <summary>
-    /// the current page in the pagination.
-    /// </summary>
+    /// <inheritdoc />
     public ulong CurrentPage { get; set; }
-    /// <summary>
-    /// specifies how many entries should be specified per page.
-    /// </summary>
-    public ulong ItemsPerPage { get; set; }
-    /// <summary>
-    /// the configured sort.
-    /// </summary>
+    /// <inheritdoc />
+    public ulong PageSize { get; set; }
+    /// <inheritdoc />
     public IEnumerable<Sorting> Sortings { get; set; }
 
     /// <summary>
     /// creates a new instance of <see cref="QueryParameter"/>.
     /// </summary>
     /// <param name="currentPage">the current page in the pagination.</param>
-    /// <param name="itemsPerPage">specifies how many entries should be specified per page.</param>
+    /// <param name="pageSizePage">specifies how many entries should be specified per page.</param>
     /// <param name="sortings">sortings config</param>
-    public QueryParameter(IEnumerable<Sorting> sortings, ulong currentPage = 1, ulong itemsPerPage = 10)
+    public QueryParameter(IEnumerable<Sorting> sortings, ulong currentPage = 1, ulong pageSize = 10)
     {
         CurrentPage = currentPage;
-        ItemsPerPage = itemsPerPage;
+        PageSize = pageSize;
         Sortings = sortings ?? throw new ArgumentNullException(nameof(sortings));
     }
 
@@ -35,10 +31,10 @@ public class QueryParameter : List<IFilter>
     /// creates a new instance of <see cref="QueryParameter"/>.
     /// </summary>
     /// <param name="currentPage">the current page in the pagination.</param>
-    /// <param name="itemsPerPage">specifies how many entries should be specified per page.</param>
+    /// <param name="pageSizePage">specifies how many entries should be specified per page.</param>
     /// <param name="sorting">sorting config</param>
-    public QueryParameter(Sorting sorting, ulong currentPage = 1, ulong itemsPerPage = 10)
-        : this(new List<Sorting>(), currentPage, itemsPerPage)
+    public QueryParameter(Sorting sorting, ulong currentPage = 1, ulong pageSize = 10)
+        : this(new List<Sorting>(), currentPage, pageSize)
     {
         if (sorting is not null)
         {
@@ -46,10 +42,7 @@ public class QueryParameter : List<IFilter>
         }
     }
 
-    /// <summary>
-    /// adds a filter to the list.
-    /// </summary>
-    /// <param name="filterEntry">the configured filter.</param>
+    /// <inheritdoc />
     public void AddFilter(IFilter filterEntry)
     {
         var existingFilter = this.SingleOrDefault(x => x.GetType() == filterEntry.GetType());
@@ -61,19 +54,13 @@ public class QueryParameter : List<IFilter>
         base.Add(filterEntry);
     }
 
-    /// <summary>
-    /// remove the given filter from the list.
-    /// </summary>
-    /// <param name="filterEntry">the configured filter.</param>
+    /// <inheritdoc />
     public void RemoveFilter(IFilter filterEntry)
     {
         Remove(filterEntry);
     }
 
-    /// <summary>
-    /// remove the given filter from the list.
-    /// </summary>
-    /// <param name="filterEntry">the configured filter.</param>
+    /// <inheritdoc />
     public void RemoveFilter<T>()
     {
         var existingFilter = this.SingleOrDefault(x => x.GetType() == typeof(T));
@@ -83,21 +70,13 @@ public class QueryParameter : List<IFilter>
         }
     }
 
-    /// <summary>
-    /// checks if the specified filter is present.
-    /// </summary>
-    /// <typeparam name="T">the type of the filter</typeparam>
-    /// <returns></returns>
+    /// <inheritdoc />
     public bool HasFilter<T>()
     {
         return (GetFilter<T>() != null);
     }
 
-    /// <summary>
-    /// checks if the specified filter is present.
-    /// </summary>
-    /// <typeparam name="T">the type of the filter</typeparam>
-    /// <returns></returns>
+    /// <inheritdoc />
     public T? GetFilter<T>()
     {
         var existingFilter = this.SingleOrDefault(x => x.GetType() == typeof(T));
