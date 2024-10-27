@@ -7,31 +7,31 @@ namespace PageMaster.Tests;
 public class PageTests
 {
     [Test]
-    public void Page_Init_Returns()
+    [TestCase(1UL, 4UL, 20UL, 5UL, 2UL, null)]
+    [TestCase(2UL, 4UL, 20UL, 5UL, 3UL, 1UL)]
+    [TestCase(4UL, 4UL, 20UL, 5UL, 5UL, 3UL)]
+    [TestCase(5UL, 4UL, 20UL, 5UL, null, 4UL)]
+    public void Page_Init_Returns(ulong currentPage, ulong pageSize, ulong totalCount,
+        ulong expectedLastPage, ulong? expectedNextPage, ulong? expectedPreviousPage)
     {
-        var lastPage = 9UL;
-        var nextPage = 5UL;
-        var currentPage = 4UL;
-        var perPage = 10UL;
-        var previousPage = 3UL;
-        var totalEntries = 94UL;
-        var items = new List<string> { "item1", "item2", "item3", "item4", "item5", "item6", "item7", "item8", "item9", "item10" };
-        
+        // generate List<string> with pageSize number items
+        var items = new List<string>();
+        for (ulong i = 0; i < pageSize; i++)
+        {
+            items.Add(i.ToString());
+        }
         IPage<string> page = new Page<string>(
-            lastPage,
-            nextPage,
             currentPage,
-            perPage,
-            previousPage,
-            totalEntries,
+            pageSize,
+            totalCount,
             items);
         
-        page.LastPage.Should().Be(lastPage);
-        page.NextPage.Should().Be(nextPage);
+        page.LastPage.Should().Be(expectedLastPage);
+        page.NextPage.Should().Be(expectedNextPage);
         page.CurrentPage.Should().Be(currentPage);
-        page.PerPage.Should().Be(perPage);
-        page.PreviousPage.Should().Be(previousPage);
-        page.TotalEntries.Should().Be(totalEntries);
+        page.PageSize.Should().Be(pageSize);
+        page.PreviousPage.Should().Be(expectedPreviousPage);
+        page.TotalCount.Should().Be(totalCount);
         page.Items.Should().BeEquivalentTo(items);
     }
 }
